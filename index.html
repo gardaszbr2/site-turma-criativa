@@ -1,13 +1,80 @@
 <!DOCTYPE html>
-<html>
-    <heade>
-        <meta charset="UTF-8">
-        <meta name="viewpot" content="width=device-width, initial=1.0">
-        <title>alurabooks</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="reset.css">
-    </heade>
-    <body>
-        <h1>alurabook</h1>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meu blog simples</title>
+    <style>
+      body{
+        font-family:arial, sans-serif;
+        margin:20px;
+        padding:0;
+      }
+      h1{
+        color:#333; 
+      }
+      .post{
+        border-bottom:1px solid #ddd;
+        margin-bottom:20px;
+        padding-bottom:10px;
+      }
+      .post h2{
+        color: #007bff;
+      }
+      .post p{
+        color:#666;
+      }
+      a{
+        color:#007bff;
+        text-decoration:underline;
+      }
+    </style>
+</head>
+<body>
+    <h1>meu blog</h1>
+    <div id="posts">
+        <!--post serão ineridos aqui-->
+    </div>
+    <div id="post"style="display:none;">
+        <!--o conteudo do post sera carregado aqui-->
+    </div>
+    <script>
+        const posts= [
+            {id:1,titulo:'primeiro post',conteudo:'este e o conteudo complete do primeiro post.'},
+            {id:2,titulo:'segundo post',conteudo:'este e o conteudo completo do segundo post.'}
+        ];
+        function renderpost(){
+            const postsdiv=document.getElementById('post');
+            postsdiv.innerHTML='';
+            posts.forEach(post=>){
+                const postsdiv=document.createElement('div');
+                postdiv.clasname='post';
+                postdiv.innerHTML=`
+                <h2>${post.titulo}</h2>
+                <p>${post.conteudo.substring(0,100)}...</p>
+                <a href="#" onclick="renderpost(${post.id})">leia mais</a>
+                `;
+                postsdiv.appendchild(postdiv);
+            });
+        }
+        function renderpost(id){
+            const post=post.find(p=> p.id===id);
+            if(post){
+                document.getElementById('pots').style.display='none';
+                const postydiv=document.getElementById('post');
+                postdiv.style.display='block';
+                postdiv.innerHTML=`<h2>${post.titulo}</h2>
+                <p>${post.conteudo}</p>
+                <a href="#"onclick="goback()">voltar ao blog</a>
+                `;
+            }
+        }
+        function goback(){
+            documnet.getElementById('post').style.display='none';
+            document.getElementById('posts').style.display='block';
+        }
+        //renderizar a lista de post ao carregar a pagina 
+        renderposts();
+    </script>
     </body>
-</html>
+    </html>
